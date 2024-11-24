@@ -9,8 +9,9 @@
     "clean": "turbo clean",
     "format": "prettier",
     "ui": "pnpm --filter @repo/ui ui",
-    "prepare": "husky install",
-    "commit": "git-cz"
+    "prepare": "husky || true",
+    "commit": "git-cz",
+    "lint-staged": "lint-staged"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.6.0",
