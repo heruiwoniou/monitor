@@ -1,12 +1,13 @@
 import { auth } from "~/auth";
+import PageContainer from "~/components/styled/page-container";
 
 export default async function Page() {
   const session = await auth();
   if (!session) return <div>Not authenticated</div>;
 
   return (
-    <div className="flex flex-col items-center justify-between p-24">
+    <PageContainer>
       hello world
-    </div>
+    </PageContainer>
   );
 }

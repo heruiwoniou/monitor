@@ -1,5 +1,7 @@
+const withTwin = require("./withTwin");
+
 /** @type {import('next').NextConfig} */
-module.exports = {
+module.exports = withTwin({
   reactStrictMode: true,
   transpilePackages: ["@repo/ui"],
   async rewrites() {
@@ -10,4 +12,4 @@ module.exports = {
       },
     ];
   },
-};
+});
