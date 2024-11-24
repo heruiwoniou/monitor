@@ -5,6 +5,7 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"],
+      "@repo/ui/*": ["./node_modules/@repo/ui/src/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
