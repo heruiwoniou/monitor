@@ -1,0 +1,12 @@
+{
+  "extends": "@repo/typescript-config/react-library.json",
+  "include": ["src", "test", "tailwind.config.ts"],
+  "exclude": ["dist", "build", "node_modules"],
+  "types": ["node", "jest", "@testing-library/jest-dom"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@repo/ui/*": ["./src/*"]
+    }
+  }
+}
