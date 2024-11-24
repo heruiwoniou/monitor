@@ -40,6 +40,11 @@ module.exports = {
     "import/no-default-export": "off",
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-shadow": "off",
+    "react/button-has-type": "off",
+    "no-param-reassign": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/restrict-template-expressions": "off"
   },
 
   overrides: [
