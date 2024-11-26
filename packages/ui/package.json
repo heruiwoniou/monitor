@@ -1,5 +1,5 @@
 {
-  "name": "@repo/ui",
+  "name": "@monitor/ui",
   "version": "0.0.0",
   "sideEffects": [
     "**/*.css"

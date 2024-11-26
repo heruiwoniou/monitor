@@ -8,13 +8,13 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@repo/ui/components/atoms/breadcrumb"
-import { Separator } from "@repo/ui/components/atoms/separator"
+} from "@monitor/ui/components/atoms/breadcrumb"
+import { Separator } from "@monitor/ui/components/atoms/separator"
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@repo/ui/components/atoms/sidebar"
+} from "@monitor/ui/components/atoms/sidebar"
 import { SessionProvider } from "next-auth/react";
 import { AppSidebar } from "~/components/framework/app-sidebar"
 

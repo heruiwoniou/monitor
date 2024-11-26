@@ -15,7 +15,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@repo/ui"
+} from "@monitor/ui"
 
 export function AreaSwitcher({
   areas,

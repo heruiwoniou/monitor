@@ -45,7 +45,7 @@ importers:
 
   apps/app:
     dependencies:
-      '@repo/ui':
+      '@monitor/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       '@tanstack/react-query':
@@ -133,7 +133,7 @@ importers:
 
   apps/docs:
     dependencies:
-      '@repo/ui':
+      '@monitor/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       '@tanstack/react-query':

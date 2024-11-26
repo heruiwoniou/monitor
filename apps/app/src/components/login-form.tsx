@@ -12,7 +12,7 @@ import {
   CardTitle,
   Input,
   Label,
-} from "@repo/ui";
+} from "@monitor/ui";
 import { AlertCircle, Loader2 } from "lucide-react";
 
 export function LoginForm({ pending, error }: { pending: boolean, error?: string }): JSX.Element {

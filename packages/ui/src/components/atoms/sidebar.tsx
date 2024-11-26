@@ -5,19 +5,19 @@ import { Slot } from "@radix-ui/react-slot"
 import type { VariantProps } from "class-variance-authority";
 import { cva } from "class-variance-authority"
 import { PanelLeft } from "lucide-react"
-import { useIsMobile } from "@repo/ui/hooks/use-mobile"
-import { cn } from "@repo/ui/lib/utils"
-import { Button } from "@repo/ui/components/atoms/button"
-import { Input } from "@repo/ui/components/atoms/input"
-import { Separator } from "@repo/ui/components/atoms/separator"
-import { Sheet, SheetContent } from "@repo/ui/components/atoms/sheet"
-import { Skeleton } from "@repo/ui/components/atoms/skeleton"
+import { useIsMobile } from "@monitor/ui/hooks/use-mobile"
+import { cn } from "@monitor/ui/lib/utils"
+import { Button } from "@monitor/ui/components/atoms/button"
+import { Input } from "@monitor/ui/components/atoms/input"
+import { Separator } from "@monitor/ui/components/atoms/separator"
+import { Sheet, SheetContent } from "@monitor/ui/components/atoms/sheet"
+import { Skeleton } from "@monitor/ui/components/atoms/skeleton"
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@repo/ui/components/atoms/tooltip"
+} from "@monitor/ui/components/atoms/tooltip"
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7

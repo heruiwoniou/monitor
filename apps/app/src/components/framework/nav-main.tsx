@@ -14,7 +14,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "@repo/ui"
+} from "@monitor/ui"
 
 export function NavMain({
   items,

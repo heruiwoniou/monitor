@@ -1,5 +1,5 @@
 import "./globals.css";
-import "@repo/ui/index.css";
+import "@monitor/ui/index.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 

@@ -53,6 +53,7 @@ module.exports = {
     "@typescript-eslint/restrict-template-expressions": "off",
     "@typescript-eslint/await-thenable": "off",
     "react/hook-use-state": "off",
-    "react/jsx-no-leaked-render": "off"
+    "react/jsx-no-leaked-render": "off",
+    "@typescript-eslint/naming-convention": "off"
   },
 };

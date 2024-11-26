@@ -6,7 +6,7 @@ module.exports = {
     "^.+.tsx?$": ["ts-jest", {}],
   },
   moduleNameMapper: {
-    "^@repo/ui/(.*)$": "<rootDir>/src/$1",
+    "^@monitor/ui/(.*)$": "<rootDir>/src/$1",
   },
   setupFilesAfterEnv: ["<rootDir>/test/setup-tests.ts"],
 };

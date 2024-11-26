@@ -16,7 +16,7 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@repo/ui"
+} from "@monitor/ui"
 import { NavMain } from "~/components/framework/nav-main"
 import { NavProjects } from "~/components/framework/nav-projects"
 import { NavUser } from "~/components/framework/nav-user"

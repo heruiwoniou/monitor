@@ -9,7 +9,7 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"],
-      "@repo/ui/*": ["./node_modules/@repo/ui/src/*"]
+      "@monitor/ui/*": ["./node_modules/@monitor/ui/src/*"]
     }
   },
   "include": [
