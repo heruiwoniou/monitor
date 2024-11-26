@@ -10,6 +10,10 @@ module.exports = withTwin({
         source: "/zp/api/:path*",
         destination: `${process.env.NEXT_PUBLIC_BASE_URL}/api/:path*`,
       },
+      {
+        source: "/zp/image/:path*",
+        destination: `${process.env.NEXT_PUBLIC_BASE_URL}/image/:path*`,
+      },
     ];
   },
 });

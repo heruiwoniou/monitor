@@ -1,12 +1,13 @@
 "use client"
 
 import * as React from "react"
-import { ChevronsUpDown } from "lucide-react"
+import { ChevronsUpDown, Plus, AudioWaveform } from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 
@@ -16,17 +17,15 @@ import {
   useSidebar,
 } from "@repo/ui"
 
-export function TeamSwitcher({
-  domains,
+export function AreaSwitcher({
+  areas,
 }: {
-  domains: {
+  areas: {
     name: string
-    logo: React.ElementType
-    plan: string
   }[]
 }) {
   const { isMobile } = useSidebar()
-  const [activeDomain, setActiveDomain] = React.useState(domains[0])
+  const [activeArea, setActiveArea] = React.useState(areas[0])
 
   return (
     <SidebarMenu>
@@ -38,13 +37,13 @@ export function TeamSwitcher({
               size="lg"
             >
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                <activeDomain.logo className="size-4" />
+                <AudioWaveform className="size-4" />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">
-                  {activeDomain.name}
+                  {activeArea.name}
                 </span>
-                <span className="truncate text-xs">{activeDomain.plan}</span>
+                <span className="truncate text-xs">Free</span>
               </div>
               <ChevronsUpDown className="ml-auto" />
             </SidebarMenuButton>
@@ -56,21 +55,28 @@ export function TeamSwitcher({
             sideOffset={4}
           >
             <DropdownMenuLabel className="text-xs text-muted-foreground">
-              Domains
+              Areas
             </DropdownMenuLabel>
-            {domains.map((domain, index) => (
+            {areas.map((domain, index) => (
               <DropdownMenuItem
                 className="gap-2 p-2"
                 key={domain.name}
-                onClick={() => { setActiveDomain(domain); }}
+                onClick={() => { setActiveArea(domain); }}
               >
                 <div className="flex size-6 items-center justify-center rounded-sm border">
-                  <domain.logo className="size-4 shrink-0" />
+                  <AudioWaveform className="size-4 shrink-0" />
                 </div>
                 {domain.name}
                 <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
               </DropdownMenuItem>
             ))}
+            <DropdownMenuSeparator />
+            <DropdownMenuItem className="gap-2 p-2">
+              <div className="flex size-6 items-center justify-center rounded-md border bg-background">
+                <Plus className="size-4" />
+              </div>
+              <div className="font-medium text-muted-foreground">Add Area</div>
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

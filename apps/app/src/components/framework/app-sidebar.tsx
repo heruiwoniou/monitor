@@ -2,17 +2,13 @@
 
 import * as React from "react"
 import {
-  AudioWaveform,
   BookOpen,
   Bot,
-  Command,
   Frame,
-  GalleryVerticalEnd,
   Map,
   PieChart,
   Settings2,
   SquareTerminal,
-  SquareActivity
 } from "lucide-react"
 import {
   Sidebar,
@@ -24,25 +20,16 @@ import {
 import { NavMain } from "~/components/framework/nav-main"
 import { NavProjects } from "~/components/framework/nav-projects"
 import { NavUser } from "~/components/framework/nav-user"
-import { TeamSwitcher } from "~/components/framework/team-switcher"
+import { AreaSwitcher } from "~/components/framework/area-switcher"
 
 // This is sample data.
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
-  domains: [
+  areas: [
     {
-      name: "Monitor",
-      logo: SquareActivity,
-      plan: "Enterprise",
+      name: "Office",
     },
     {
-      name: "Zervice Inc.",
-      logo: AudioWaveform,
-      plan: "Free",
+      name: "Computer Room",
     },
   ],
   navMain: [
@@ -155,14 +142,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher domains={data.domains} />
+        <AreaSwitcher areas={data.areas} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

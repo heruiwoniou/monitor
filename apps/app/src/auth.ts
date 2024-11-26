@@ -37,17 +37,22 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           username: string;
         };
 
-        const user = {
-          id: res.email,
-          name: res.username,
-          email: res.email,
-          image: "https://avatars.githubusercontent.com/u/17067673?v=4",
-        };
-
         const thirdPartyCookie = response.headers.getSetCookie();
 
+        const profile: {
+          role: string;
+          user: { avatarFile: string };
+        } = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/initialData`, {
+          headers: {
+            "Content-Type": "application/json",
+            Cookie: thirdPartyCookie.join(";"),
+          },
+          credentials: "include",
+        }).then((response) => response.json());
+
         if (thirdPartyCookie.length > 0) {
-          const items = thirdPartyCookie[0]
+          const items = thirdPartyCookie
+            .join(";")
             .split(";")
             .map((str) => str.trim().split("="));
 
@@ -55,6 +60,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             (await cookies()).set(name, value);
           }
         }
+
+        const user = {
+          id: res.email,
+          name: res.username,
+          email: res.email,
+          image: `/zp/${profile.user.avatarFile}`,
+          profile,
+        };
 
         return user;
       },
