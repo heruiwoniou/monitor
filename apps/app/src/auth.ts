@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
@@ -42,6 +43,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           email: res.email,
           image: "https://avatars.githubusercontent.com/u/17067673?v=4",
         };
+
+        const thirdPartyCookie = response.headers.getSetCookie();
+
+        if (thirdPartyCookie.length > 0) {
+          const items = thirdPartyCookie[0]
+            .split(";")
+            .map((str) => str.trim().split("="));
+
+          for (const [name, value] of items) {
+            (await cookies()).set(name, value);
+          }
+        }
 
         return user;
       },

@@ -8,7 +8,7 @@ module.exports = withTwin({
     return [
       {
         source: "/zp/api/:path*",
-        destination: `${process.env.NEXT_PUBLIC_BASE_URL}/:path*`,
+        destination: `${process.env.NEXT_PUBLIC_BASE_URL}/api/:path*`,
       },
     ];
   },

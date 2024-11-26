@@ -12,6 +12,7 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
+  SquareActivity
 } from "lucide-react"
 import {
   Sidebar,
@@ -32,20 +33,15 @@ const data = {
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
-  teams: [
+  domains: [
     {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
+      name: "Monitor",
+      logo: SquareActivity,
       plan: "Enterprise",
     },
     {
-      name: "Acme Corp.",
+      name: "Zervice Inc.",
       logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
       plan: "Free",
     },
   ],
@@ -159,7 +155,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <TeamSwitcher domains={data.domains} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
