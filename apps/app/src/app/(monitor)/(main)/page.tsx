@@ -7,7 +7,7 @@ export default async function Page() {
 
   return (
     <PageContainer>
-      hello world
+      hello, {session.user?.name}
     </PageContainer>
   );
 }

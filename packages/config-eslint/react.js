@@ -44,7 +44,9 @@ module.exports = {
     "react/button-has-type": "off",
     "no-param-reassign": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
-    "@typescript-eslint/restrict-template-expressions": "off"
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "react/hook-use-state": "off",
+    "react/jsx-no-leaked-render": "off",
   },
 
   overrides: [

@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@repo/ui": "workspace:*",
+    "@tanstack/react-query": "^5.61.3",
+    "@tanstack/react-query-devtools": "^5.61.3",
     "add": "^2.0.6",
     "lucide-react": "^0.460.0",
     "next": "^15.0.3",
@@ -25,6 +27,7 @@
     "@repo/eslint-config": "workspace:*",
     "@repo/tailwind-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@tanstack/eslint-plugin-query": "^5.61.3",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",

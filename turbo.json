@@ -1,28 +1,16 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalEnv": [
+    "NODE_ENV",
     "TURBO_DEFAULT",
     "NEXT_PUBLIC_BASE_URL",
     "AUTH_SECRET"
   ],
   "tasks": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env*"
-      ],
-      "env": [
-        "NEXT_PUBLIC_BASE_URL",
-        "AUTH_SECRET"
-      ],
-      "outputs": [
-        "dist/**",
-        ".next/**",
-        "!.next/cache/**"
-      ]
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
     "lint": {},
     "test": {},
@@ -32,14 +20,7 @@
     },
     "type-check": {},
     "dev": {
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env*"
-      ],
-      "env": [
-        "NEXT_PUBLIC_BASE_URL",
-        "AUTH_SECRET"
-      ],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "cache": false,
       "persistent": true
     },
