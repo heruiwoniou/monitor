@@ -4,6 +4,9 @@ declare module "next-auth" {
   interface Session {
     user: {
       profile: Record<string, unknown>;
-    } & DefaultSession["user"];
+      image?: string;
+      name?: string;
+      email?: string;
+    } & Omit<DefaultSession["user"], "name" | "image" | "email">;
   }
 }
