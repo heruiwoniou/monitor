@@ -82,18 +82,18 @@ importers:
       '@babel/plugin-syntax-typescript':
         specifier: ^7.25.9
         version: 7.25.9(@babel/core@7.26.0)
+      '@monitor/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/config-eslint
+      '@monitor/tailwind-config':
+        specifier: workspace:*
+        version: link:../../packages/config-tailwind
+      '@monitor/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/config-typescript
       '@next/eslint-plugin-next':
         specifier: ^14.2.3
         version: 14.2.3
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../../packages/config-eslint
-      '@repo/tailwind-config':
-        specifier: workspace:*
-        version: link:../../packages/config-tailwind
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/config-typescript
       '@tanstack/eslint-plugin-query':
         specifier: ^5.61.3
         version: 5.61.3(eslint@8.57.0)(typescript@5.5.4)
@@ -155,18 +155,18 @@ importers:
         specifier: ^18.2.0
         version: 18.2.0(react@18.2.0)
     devDependencies:
+      '@monitor/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/config-eslint
+      '@monitor/tailwind-config':
+        specifier: workspace:*
+        version: link:../../packages/config-tailwind
+      '@monitor/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/config-typescript
       '@next/eslint-plugin-next':
         specifier: ^14.2.3
         version: 14.2.3
-      '@repo/eslint-config':
-        specifier: workspace:*
-        version: link:../../packages/config-eslint
-      '@repo/tailwind-config':
-        specifier: workspace:*
-        version: link:../../packages/config-tailwind
-      '@repo/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/config-typescript
       '@tanstack/eslint-plugin-query':
         specifier: ^5.61.3
         version: 5.61.3(eslint@8.57.0)(typescript@5.5.4)
@@ -207,7 +207,7 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.1)
     devDependencies:
-      '@repo/typescript-config':
+      '@monitor/typescript-config':
         specifier: workspace:*
         version: link:../config-typescript
       tailwindcss:
@@ -261,13 +261,13 @@ importers:
         specifier: ^1.0.7
         version: 1.0.7(tailwindcss@3.4.1)
     devDependencies:
-      '@repo/eslint-config':
+      '@monitor/eslint-config':
         specifier: workspace:*
         version: link:../config-eslint
-      '@repo/tailwind-config':
+      '@monitor/tailwind-config':
         specifier: workspace:*
         version: link:../config-tailwind
-      '@repo/typescript-config':
+      '@monitor/typescript-config':
         specifier: workspace:*
         version: link:../config-typescript
       '@testing-library/dom':
@@ -303,6 +303,48 @@ importers:
       tailwindcss:
         specifier: ^3.4.1
         version: 3.4.1
+      ts-jest:
+        specifier: ^29.2.5
+        version: 29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@20.11.24)(babel-plugin-macros@3.1.0))(typescript@5.5.4)
+      typescript:
+        specifier: 5.5.4
+        version: 5.5.4
+
+  packages/utils:
+    devDependencies:
+      '@monitor/eslint-config':
+        specifier: workspace:*
+        version: link:../config-eslint
+      '@monitor/typescript-config':
+        specifier: workspace:*
+        version: link:../config-typescript
+      '@testing-library/dom':
+        specifier: ^10.4.0
+        version: 10.4.0
+      '@testing-library/jest-dom':
+        specifier: ^6.6.3
+        version: 6.6.3
+      '@testing-library/react':
+        specifier: ^16.0.1
+        version: 16.0.1(@testing-library/dom@10.4.0)(@types/react-dom@18.2.19)(@types/react@18.2.61)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@testing-library/user-event':
+        specifier: ^14.5.2
+        version: 14.5.2(@testing-library/dom@10.4.0)
+      '@types/jest':
+        specifier: ^29.5.14
+        version: 29.5.14
+      '@types/node':
+        specifier: ^20.11.24
+        version: 20.11.24
+      '@types/react':
+        specifier: ^18.2.61
+        version: 18.2.61
+      jest:
+        specifier: ^29.7.0
+        version: 29.7.0(@types/node@20.11.24)(babel-plugin-macros@3.1.0)
+      jest-environment-jsdom:
+        specifier: ^29.7.0
+        version: 29.7.0
       ts-jest:
         specifier: ^29.2.5
         version: 29.2.5(@babel/core@7.26.0)(@jest/transform@29.7.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.26.0))(jest@29.7.0(@types/node@20.11.24)(babel-plugin-macros@3.1.0))(typescript@5.5.4)

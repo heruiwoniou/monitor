@@ -19,9 +19,9 @@
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^14.2.3",
-    "@repo/eslint-config": "workspace:*",
-    "@repo/tailwind-config": "workspace:*",
-    "@repo/typescript-config": "workspace:*",
+    "@monitor/eslint-config": "workspace:*",
+    "@monitor/tailwind-config": "workspace:*",
+    "@monitor/typescript-config": "workspace:*",
     "@tanstack/eslint-plugin-query": "^5.61.3",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
