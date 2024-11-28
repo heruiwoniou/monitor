@@ -6,7 +6,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@monitor/ui/*": ["./src/*"]
+      "@monitor/ui/*": ["./src/*"],
+      "test/*": ["./test/*"]
     }
   }
 }

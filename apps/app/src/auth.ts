@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { request } from "@monitor/utils";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -17,38 +18,35 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           type: "email",
         };
 
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/login`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(body),
-          }
-        );
+        const { data: res, response } = await request.post<{
+          email: string;
+          username: string;
+        }>("/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          data: body,
+          baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+        });
 
-        if (!response.ok) {
+        if (!res) {
           return null;
         }
 
-        const res = (await response.json()) as {
-          email: string;
-          username: string;
-        };
+        const thirdPartyCookie = response?.headers.getSetCookie() || [];
 
-        const thirdPartyCookie = response.headers.getSetCookie();
-
-        const profile: {
+        const { data: profile } = await request.get<{
           role: string;
           user: { avatarFile: string };
-        } = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/initialData`, {
+        }>("/api/initialData", {
           headers: {
-            "Content-Type": "application/json",
             Cookie: thirdPartyCookie.join(";"),
           },
-          credentials: "include",
-        }).then((response) => response.json());
+          baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+        });
+
+        if (!profile) return null;
 
         if (thirdPartyCookie.length > 0) {
           const items = thirdPartyCookie

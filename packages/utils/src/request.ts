@@ -1,22 +1,25 @@
+import fetch from "cross-fetch";
+
 const gURL = (url: string, baseURL: string) => baseURL + url;
 
 export interface ClientResponse<T> {
   data?: T;
   error?: string;
+  response?: Response;
 }
 
 class FetchError extends Error {
-  response?: Response;
+  response: Response | undefined;
   body: Record<string, string> | undefined;
 }
 
-const parseBody = async <T>(response: Response): Promise<{ data: T }> => {
+const parseBody = async <T>(response: Response): Promise<ClientResponse<T>> => {
   try {
     return {
       data: await response.json(),
+      response,
     };
   } catch (e) {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- This value always exists
     if (process.env.NODE_ENV === "development") {
       console.log(e);
     }
@@ -44,7 +47,7 @@ const request = <T>(
     throwError = false,
     autoHandleError = false,
     headers: originalHeaders = {},
-    baseURL = "/",
+    baseURL = "",
     autoHandler,
     ...opt
   } = options;
@@ -54,15 +57,15 @@ const request = <T>(
       (opt.body instanceof FormData || opt.body instanceof URLSearchParams)
         ? "application/x-www-form-urlencoded"
         : "application/json",
-    "ngrok-skip-browser-warning": "123", // needed to skip ngrok browser warning !
   };
   if (
     opt.body &&
     opt.body instanceof FormData &&
     originalHeaders["Content-Type"] !== "multipart/form-data"
   ) {
-    const entries = [...opt.body];
-    opt.body = new URLSearchParams(entries as string[][]);
+    opt.body = new URLSearchParams(
+      opt.body as unknown as Record<string, string>,
+    );
   }
 
   const finallyHeaders = {
@@ -74,7 +77,12 @@ const request = <T>(
     delete finallyHeaders["Content-Type"];
   }
 
-  return fetch(gURL(url, baseURL), {
+  const requestURL = gURL(
+    url,
+    process.env.NODE_ENV === "test" ? "http://localhost" : baseURL,
+  );
+
+  return fetch(requestURL, {
     headers: finallyHeaders,
     ...opt,
   })
@@ -95,16 +103,16 @@ const request = <T>(
     .catch((error: unknown) => {
       const { response, body } = error as FetchError;
 
-      if (response && response.status === 401) {
-        return { error: "Unauthorized" };
+      if (response?.status === 401) {
+        return { error: "Unauthorized", response };
       }
 
       const errorText: string =
-        ((body?.message ?? (error as FetchError).message) ||
-          response?.statusText) ??
+        body?.message ||
+        (error as FetchError).message ||
+        response?.statusText ||
         "error";
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access -- This value always exists
       if (process.env.NODE_ENV === "development") {
         console.error(`Request failed: ${url}`, errorText);
       }
@@ -119,18 +127,21 @@ const request = <T>(
 
       return {
         error: errorText,
+        response,
       };
     });
 };
 
 request.post = <T>(
   url: string,
-  data?: Record<string, unknown> | FormData | URLSearchParams | unknown[],
-  option: RequestOptions = {},
-) =>
-  request<T>(url, {
+  option: Omit<RequestOptions, "body"> & {
+    data?: Record<string, unknown> | FormData | URLSearchParams | unknown[];
+  } = {},
+) => {
+  const { data, ...restOption } = option;
+  return request<T>(url, {
     method: "POST",
-    ...option,
+    ...restOption,
     ...(data
       ? {
           body:
@@ -140,15 +151,18 @@ request.post = <T>(
         }
       : {}),
   });
+};
 
 request.put = <T>(
   url: string,
-  data?: Record<string, unknown> | FormData | URLSearchParams | unknown[],
-  option: RequestOptions = {},
-) =>
-  request<T>(url, {
+  option: Omit<RequestOptions, "body"> & {
+    data?: Record<string, unknown> | FormData | URLSearchParams | unknown[];
+  } = {},
+) => {
+  const { data, ...restOption } = option;
+  return request<T>(url, {
     method: "PUT",
-    ...option,
+    ...restOption,
     ...(data
       ? {
           body:
@@ -158,8 +172,9 @@ request.put = <T>(
         }
       : {}),
   });
+};
 
-request.delete = <T>(url: string, option: RequestOptions = {}) =>
+request.delete = <T>(url: string, option: Omit<RequestOptions, "body"> = {}) =>
   request<T>(url, {
     method: "DELETE",
     ...option,
@@ -167,15 +182,18 @@ request.delete = <T>(url: string, option: RequestOptions = {}) =>
 
 request.get = <T>(
   url: string,
-  params?: Record<string, string>,
-  option: RequestOptions = {},
-) =>
-  request<T>(
+  option: Omit<RequestOptions, "body"> & {
+    params?: Record<string, string>;
+  } = {},
+) => {
+  const { params, ...restOptions } = option;
+  return request<T>(
     `${url}${params ? `?${new URLSearchParams(params).toString()}` : ""}`,
     {
       method: "GET",
-      ...option,
+      ...restOptions,
     },
   );
+};
 
 export default request;

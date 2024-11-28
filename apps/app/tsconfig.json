@@ -9,7 +9,8 @@
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"],
-      "@monitor/ui/*": ["./node_modules/@monitor/ui/src/*"]
+      "@monitor/ui/*": ["./node_modules/@monitor/ui/src/*"],
+      "@monitor/utils/*": ["./node_modules/@monitor/utils/*"]
     }
   },
   "include": [

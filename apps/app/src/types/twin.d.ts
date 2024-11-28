@@ -1,5 +1,6 @@
+import { type DOMAttributes } from "react";
 import "twin.macro";
-import {type CSSProp, type css as cssImport} from "styled-components";
+import { type CSSProp, type css as cssImport } from "styled-components";
 import type styledImport from "styled-components";
 
 declare module "twin.macro" {
@@ -15,7 +16,7 @@ declare module "react" {
     tw?: string;
   }
   // The inline svg css prop
-  interface SVGProps<T> extends SVGProps<SVGSVGElement> {
+  interface SVGProps extends SVGProps<SVGSVGElement> {
     css?: CSSProp;
     tw?: string;
   }
