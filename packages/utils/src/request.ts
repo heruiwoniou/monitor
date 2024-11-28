@@ -47,7 +47,7 @@ const request = <T>(
     throwError = false,
     autoHandleError = false,
     headers: originalHeaders = {},
-    baseURL = "",
+    baseURL = request.baseURL,
     autoHandler,
     ...opt
   } = options;
@@ -195,5 +195,7 @@ request.get = <T>(
     },
   );
 };
+
+request.baseURL = '';
 
 export default request;

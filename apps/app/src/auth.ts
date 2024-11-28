@@ -34,14 +34,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           return null;
         }
 
-        const thirdPartyCookie = response?.headers.getSetCookie() || [];
+        const thirdPartyCookie = response?.headers.get("set-cookie") || "";
 
         const { data: profile } = await request.get<{
           role: string;
           user: { avatarFile: string };
         }>("/api/initialData", {
           headers: {
-            Cookie: thirdPartyCookie.join(";"),
+            Cookie: thirdPartyCookie,
           },
           baseURL: process.env.NEXT_PUBLIC_BASE_URL,
         });
@@ -50,7 +50,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         if (thirdPartyCookie.length > 0) {
           const items = thirdPartyCookie
-            .join(";")
             .split(";")
             .map((str) => str.trim().split("="));
 

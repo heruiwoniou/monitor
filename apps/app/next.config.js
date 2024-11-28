@@ -3,6 +3,7 @@ const withTwin = require("./withTwin");
 /** @type {import('next').NextConfig} */
 module.exports = withTwin({
   reactStrictMode: true,
+  output: "standalone",
   transpilePackages: ["@monitor/ui"],
   async rewrites() {
     return [
