@@ -2,28 +2,31 @@ version: '3.1'
 
 services:
 
-  mongo:
-    container_name: mongo
-    image: mongo:latest
-    restart: always
-    env_file: ./envs/.env.local
-    networks:
-      - monitor_network
-  app:
-    container_name: app
-    build:
-      context: .
-      dockerfile: ./apps/app/Dockerfile
-      args:
-        HTTP_PROXY: http://192.168.2.72:10086
-        HTTPS_PROXY: http://192.168.2.72:10086
-        NO_PROXY: .domain.ltd,127.0.0.1
-    env_file: ./envs/.env.local
-    restart: always
+  db:
+    container_name: db
+    image: mysql:latest
     ports:
-      - "3000:3000"
+      - 3306:3306
+    restart: always
+    env_file: ./envs/.env.local
     networks:
       - monitor_network
+
+  # app:
+  #   container_name: app
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/app/Dockerfile
+  #     args:
+  #       HTTP_PROXY: http://192.168.2.72:10086
+  #       HTTPS_PROXY: http://192.168.2.72:10086
+  #       NO_PROXY: .domain.ltd,127.0.0.1
+  #   env_file: ./envs/.env.local
+  #   restart: always
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - monitor_network
 
 networks:
   monitor_network:

@@ -1,17 +1,18 @@
 {
   "private": true,
   "scripts": {
-    "build": "dotenv-run -f .env turbo build",
+    "build": "dotenv-run -f .env -- turbo build",
     "dev": "dotenv-run -f .env.local -- turbo run app#dev",
     "lint": "turbo lint",
     "test": "turbo test",
     "type-check": "turbo type-check",
     "clean": "turbo clean",
     "format": "prettier",
-    "ui": "pnpm --filter @monitor/ui ui",
     "prepare": "husky || true",
     "commit": "git-cz",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "ui": "pnpm --filter @monitor/ui ui",
+    "prisma": "dotenv-run -f .env -- pnpm --filter app prisma"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.6.0",

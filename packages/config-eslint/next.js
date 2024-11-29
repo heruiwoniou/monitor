@@ -55,6 +55,7 @@ module.exports = {
     "react/hook-use-state": "off",
     "react/jsx-no-leaked-render": "off",
     "@typescript-eslint/naming-convention": "off",
-    "@typescript-eslint/prefer-nullish-coalescing": "off"
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/require-await": "off"
   },
 };

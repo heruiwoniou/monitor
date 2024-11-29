@@ -3,9 +3,19 @@
 import { AuthError } from "next-auth";
 import { signIn } from "~/auth";
 
-export async function authenticate(formData: FormData) {
+export interface IAuthenticateConfig {
+  provider: "github" | "credentials";
+  options?:
+    | FormData
+    | {
+        redirectTo?: string;
+        redirect?: true | undefined;
+      };
+}
+
+export async function authenticate(config: IAuthenticateConfig) {
   try {
-    await signIn("credentials", formData);
+    await signIn(config.provider, config.options);
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {

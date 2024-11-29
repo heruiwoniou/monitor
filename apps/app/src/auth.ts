@@ -1,10 +1,15 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import GitHub from "next-auth/providers/github"
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { request } from "@monitor/utils";
+import { PrismaAdapter } from "@auth/prisma-adapter"
+import { prisma } from "~/prisma"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  adapter: PrismaAdapter(prisma),
+  session: { strategy: "jwt" },
   providers: [
     Credentials({
       credentials: {
@@ -69,6 +74,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         return user;
       },
     }),
+    GitHub
   ],
   pages: {
     signIn: "/signin",
